@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1eaee6;
+      color: #333;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
+    nav a {
+      color: #333;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 20px;
+    }
+    .portfolio-item {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: rgb(227, 242, 10);
+      
+    }
+    #about img {
+     
+    width:190px;
+    height:190px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border: 1px solid white;
+    box-shadow: 20px;
+    border-radius:50px;
+    box-shadow: 0px 25px 20px -20px rgba(210, 205, 205, 0.45), -25px 0 20px -20px rgba(246, 235, 235, 0.45);
+    
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    .music-player {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #92d82f;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     
+    }
+    .music-player button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      background-color: #333;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .music-player button:hover {
+      background-color: #ff1313;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>My Music player</h1>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>Hello! I'm a passionate web developer  in creating interactive and responsive websites.</p>
+  <img src="pp.jpg" alt="Profile Picture">
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="portfolio-item">
+    <h3>Project 1: Music Player</h3>
+    <p>A simple music player built using JavaScript.</p>
+   
+
+  </div>
+</section>
+
+<section id="music-player" class="music-player">
+  <h2>Music Player</h2>
+  <p id="current-song">Now Playing: Song 1</p>
+  <audio id="audio" src="appu dance.mp3" ></audio>
+  <audio id="audio" src="thum hi ho.mp3" ></audio>
+  <audio id="audio" src="jagadolage janisidalu.mp3" ></audio>
+  <div>
+    <button onclick="playPause()">Play/Pause</button>
+    <button onclick="nextSong()">Next</button>
+    <button onclick="prevSong()">Previous</button>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: prajwalgowda17003@gmail.com</p>
+</section>
+
+<footer>
+  <p>&copy; 2024 My Portfolio</p>
+</footer>
+
+<script>
+  // Music Player JavaScript
+  const songs = [
+    { name: "Song 1", src: "appu dance.mp3" },
+    { name: "Song 2", src: "thum hi ho.mp3" },
+    { name: "Song 3", src: "jagadolage janisidalu.mp3" },
+  ];
+
+  let currentSongIndex = 0;
+  const audioElement = document.getElementById("audio");
+  const currentSongElement = document.getElementById("current-song");
+
+  function updateSongInfo() {
+    currentSongElement.textContent = `Now Playing: ${songs[currentSongIndex].name}`;
+    audioElement.src = songs[currentSongIndex].src;
+  }
+
+  function playPause() {
+    if (audioElement.paused) {
+      audioElement.play();
+    } else {
+      audioElement.pause();
+    }
+  }
+
+  function nextSong() {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    updateSongInfo();
+    audioElement.play();
+  }
+
+  function prevSong() {
+    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    updateSongInfo();
+    audioElement.play();
+  }
+
+  // Initialize music player
+  updateSongInfo();
+</script>
+
+</body>
+</html>
